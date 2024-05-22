@@ -1,0 +1,23 @@
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #3a3a3a; /* Black-greyish color */
+  color: white;
+  text-align: center;
+  padding: 20px 0; /* Increased header space by 50% */
+  z-index: 1000;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header-title {
+  font-family: -apple-system, BlinkMacSystemFont, 'San Francisco', 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Apple font */
+  font-size: 24px;
+  font-weight: 400;
+  color: #b3ffb3; /* Brighter light lime green */
+  margin: 0;
+}

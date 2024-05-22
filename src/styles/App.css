@@ -1,0 +1,12 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'San Francisco', 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Apple font */
+}
+
+.App {
+  text-align: center;
+}
+
+.landing-container {
+  padding-top: 75px; /* Adjust padding to avoid overlap with fixed header */
+}

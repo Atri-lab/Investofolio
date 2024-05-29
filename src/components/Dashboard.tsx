@@ -1,11 +1,12 @@
 import React from 'react';
 import '../styles/Dashboard.css';
 import { FaArrowUp, FaArrowDown, FaApple, FaBuilding, FaMicrochip, FaCar, FaPlusCircle } from 'react-icons/fa';
+import StockGraph from './StockGraph';
 
 const Dashboard: React.FC = () => {
   return (
     <div className="dashboard-container">
-      <h1 className="dashboard-header">Dashboard</h1>
+      <h1 className="dashboard-header"></h1>
       <div className="portfolio-section">
         <h2 className="section-header">Stocks</h2>
         <div className="stock-card">
@@ -70,19 +71,16 @@ const Dashboard: React.FC = () => {
         </div>
       </div>
       <div className="graph-section">
-        <h2 className="section-header"> Graph</h2>
-        {/* Placeholder for the graph */}
-        <div className="graph-placeholder">Graph will be here</div>
+        <h2 className="section-header"></h2>
+        <StockGraph />
       </div>
       <div className="calendar-section">
         <div className="calendar-widget">
           <h2 className="section-header">Market Calendar</h2>
-          {/* Placeholder for the calendar */}
           <div className="calendar-placeholder">Calendar will be here</div>
         </div>
         <div className="industry-movement-widget">
           <h2 className="section-header">Industry Movement</h2>
-          {/* Placeholder for industry movement */}
           <div className="industry-placeholder">Industry movement will be here</div>
         </div>
       </div>

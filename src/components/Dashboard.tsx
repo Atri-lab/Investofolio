@@ -3,6 +3,7 @@ import '../styles/Dashboard.css';
 import { FaArrowUp, FaArrowDown, FaApple, FaBuilding, FaMicrochip, FaCar, FaPlusCircle } from 'react-icons/fa';
 import StockGraph from './StockGraph';
 import IndustryCalendar from './IndustryCalendar';
+import IndustryMovement from './IndustryMovement';
 
 const Dashboard: React.FC = () => {
   return (
@@ -81,8 +82,7 @@ const Dashboard: React.FC = () => {
           <IndustryCalendar />
         </div>
         <div className="industry-movement-widget">
-          <h2 className="section-header">Industry Movement</h2>
-          <div className="industry-placeholder">Industry movement will be here</div>
+          <IndustryMovement />
         </div>
       </div>
     </div>

@@ -1,110 +1,116 @@
 .industry-movement-container {
-    width: 100%;
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 25px;
-    transform: translateX(-20px);
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 25px;
+  transform: translateX(-20px);
+}
+
+.tv-frame {
+  background: linear-gradient(145deg, #ffffff, #e6e6e6);
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.tv-screen {
+  background: #000;
+  border: 5px solid #ccc;
+  border-radius: 15px;
+  width: 95%;
+  height: 85%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.stock-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+  z-index: 2; /* Ensure text is above background */
+  margin-bottom: 5px; /* Shift text up */
+}
+
+.sector {
+  color: #fff;
+  margin-right: 10px;
+  font-size: 22px; /* Increase font size */
+}
+
+.change {
+  color: #fff;
+  font-size: 22px; /* Increase font size */
+}
+
+.arrow-icon {
+  margin-left: 10px;
+  font-size: 24px;
+}
+
+.stock-ticker {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 30px; /* Adjusted height for better fit */
+  background: #333;
+  color: #fff;
+  font-size: 10px; /* Reduced font size for better fit */
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.ticker-items {
+  display: flex;
+  animation: ticker-scroll 15s linear infinite; /* Reduced animation duration for a faster scroll */
+}
+
+.ticker-item {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.ticker-name {
+  margin-right: 10px;
+}
+
+.ticker-change {
+  display: flex;
+  align-items: center;
+}
+
+.ticker-change.up {
+  color: #4caf50;
+}
+
+.ticker-change.down {
+  color: #f44336;
+}
+
+@keyframes ticker-scroll {
+  0% {
+    transform: translateX(100%);
   }
-  
-  .tv-frame {
-    background: linear-gradient(145deg, #ffffff, #e6e6e6);
-    border-radius: 20px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-    width: 100%;
-    height: 150px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
+  100% {
+    transform: translateX(-100%);
   }
-  
-  .tv-screen {
-    background: #000;
-    border: 5px solid #ccc;
-    border-radius: 15px;
-    width: 95%;
-    height: 85%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    font-size: 24px;
-    font-weight: bold;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .stock-info {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    text-align: center;
-    z-index: 2; /* Ensure text is above background */
-  }
-  
-  .sector {
-    color: #fff;
-    margin-right: 10px;
-  }
-  
-  .change {
-    color: #fff;
-  }
-  
-  .arrow-icon {
-    margin-left: 10px;
-    font-size: 24px;
-  }
-  
-  .heartbeat {
-    width: 100%;
-    height: 10px;
-    position: absolute;
-    bottom: 20px;
-    left: 0;
-    overflow: hidden;
-    z-index: 1; /* Ensure background is behind text */
-  }
-  
-  .heartbeat svg {
-    width: 200%;
-    height: 100%;
-    animation: heartbeat 4s infinite linear;
-  }
-  
-  .heartbeat-line {
-    animation: heartbeat-line 4s infinite linear;
-  }
-  
-  .up .tv-screen {
-    background: #4caf50; /* Green background for up */
-  }
-  
-  .down .tv-screen {
-    background: #f44336; /* Red background for down */
-  }
-  
-  @keyframes heartbeat {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
-  }
-  
-  @keyframes heartbeat-line {
-    0% {
-      stroke-dasharray: 0, 100;
-    }
-    100% {
-      stroke-dasharray: 100, 0;
-    }
-  }
-  
+}

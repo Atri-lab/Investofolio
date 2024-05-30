@@ -10,6 +10,14 @@ const industryData = [
   { sector: 'Energy', change: 0.4, up: true },
 ];
 
+const stockTickerData = [
+  { name: 'AAPL', price: 145.09, change: 1.2, up: true },
+  { name: 'GOOGL', price: 2734.57, change: -2.3, up: false },
+  { name: 'AMZN', price: 3401.46, change: 0.5, up: true },
+  { name: 'TSLA', price: 709.74, change: -1.7, up: false },
+  { name: 'MSFT', price: 299.35, change: 2.8, up: true },
+];
+
 const IndustryMovement: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -34,16 +42,18 @@ const IndustryMovement: React.FC = () => {
               {change}%
             </span>
           </div>
-          <div className="heartbeat">
-            <svg viewBox="0 0 100 10" preserveAspectRatio="none">
-              <polyline
-                className="heartbeat-line"
-                points={up ? "0,10 20,5 40,8 60,2 80,6 100,0" : "0,0 20,5 40,2 60,8 80,4 100,10"}
-                fill="none"
-                stroke="#fff"
-                strokeWidth="1"
-              />
-            </svg>
+          <div className="stock-ticker">
+            <div className="ticker-items">
+              {stockTickerData.map((stock, index) => (
+                <div key={index} className="ticker-item">
+                  <span className="ticker-name">{stock.name}</span>
+                  <span className={`ticker-change ${stock.up ? 'up' : 'down'}`}>
+                    {stock.up ? <FaArrowUp /> : <FaArrowDown />}
+                    {stock.price} ({stock.up ? '+' : ''}{stock.change}%)
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

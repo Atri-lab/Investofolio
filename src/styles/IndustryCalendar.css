@@ -1,0 +1,133 @@
+.industry-calendar-container {
+  background: linear-gradient(145deg, #ffffff, #e6e6e6); /* Whitish-gray background */
+  padding: 20px; /* Adjusted padding for better spacing */
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Softer shadow for a modern look */
+  width: 90%;
+  height: 70%;
+}
+
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px; /* Increased margin for better spacing */
+}
+
+.nav-button {
+  background: none;
+  border: none;
+  font-size: 24px; /* Increase icon size */
+  color: #007bff;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.nav-button:hover {
+  color: #0056b3;
+}
+
+.current-month {
+  font-size: 24px; /* Increase font size for better visibility */
+  font-weight: bold;
+  color: #333;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.react-calendar {
+  width: 100%;
+  height: 100%; /* Ensure it takes up the full height of the container */
+  border: none;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.react-calendar__navigation {
+  display: none;
+}
+
+.react-calendar__month-view__weekdays {
+  text-align: center;
+  font-weight: bold;
+  color: #000000; /* Softer gray for weekday headers */
+  text-transform: uppercase;
+  font-size: 14px;
+  background-color: #ffffff; /* Change background to white */
+  border-radius: 8px;
+  padding: 10px 0;
+  margin-bottom: 10px; /* Add space below weekdays */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow for a more stylish look */
+}
+
+.react-calendar__tile {
+  height: 50px; /* Adjust height for uniformity */
+  width: 100%; /* Full width */
+  text-align: center;
+  padding: 10px 0;
+  box-sizing: border-box; /* Ensure padding doesn't affect size */
+  border: 1px solid #ddd; /* Add border to distinguish days */
+  position: relative; /* For positioning the event marker */
+  pointer-events: none; /* Disable pointer events to prevent clicking */
+  background-color: #fff;
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; /* Smooth transitions for hover effects */
+  border-radius: 8px; /* Rounded corners for tiles */
+}
+
+.react-calendar__tile:hover {
+  background-color: #f1f1f1; /* Light gray on hover */
+  transform: scale(1.05); /* Slight scale-up on hover */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+}
+
+.react-calendar__tile--now {
+  background: none; /* Remove the background for the current date */
+}
+
+.react-calendar__tile--active {
+  background: none; /* Remove background for active tiles */
+}
+
+.react-calendar__tile--hasActive {
+  background: none; /* Remove background for inactive tiles */
+}
+
+.event-marker {
+  background-color: #28a745;
+  color: white;
+  padding: 5px; /* Increased padding for better visibility */
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center the marker */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 14px; /* Increased font size for better visibility */
+  width: 20px; /* Increased width for better visibility */
+  height: 20px; /* Increased height for better visibility */
+  pointer-events: all; /* Enable pointer events for event marker */
+}
+
+.event-marker:hover::after {
+  content: attr(title);
+  background-color: rgba(0, 0, 0, 0.8); /* Dark background for better contrast */
+  color: white;
+  padding: 10px; /* Increased padding for better visibility */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: -40px; /* Adjusted to position tooltip above the marker */
+  right: 50%;
+  transform: translateX(50%);
+  white-space: nowrap;
+  z-index: 10;
+  font-size: 14px; /* Increased font size for better readability */
+  opacity: 0; /* Start with hidden tooltip */
+  transition: opacity 0.3s, transform 0.3s; /* Smooth transition for opacity and transform */
+}
+
+.event-marker:hover::after {
+  opacity: 1; /* Show tooltip on hover */
+  transform: translateX(50%) translateY(-10px); /* Move tooltip slightly upwards */
+}

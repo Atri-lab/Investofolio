@@ -2,6 +2,7 @@ import React from 'react';
 import '../styles/Dashboard.css';
 import { FaArrowUp, FaArrowDown, FaApple, FaBuilding, FaMicrochip, FaCar, FaPlusCircle } from 'react-icons/fa';
 import StockGraph from './StockGraph';
+import IndustryCalendar from './IndustryCalendar';
 
 const Dashboard: React.FC = () => {
   return (
@@ -76,8 +77,8 @@ const Dashboard: React.FC = () => {
       </div>
       <div className="calendar-section">
         <div className="calendar-widget">
-          <h2 className="section-header">Market Calendar</h2>
-          <div className="calendar-placeholder">Calendar will be here</div>
+          <h2 className="section-header"></h2>
+          <IndustryCalendar />
         </div>
         <div className="industry-movement-widget">
           <h2 className="section-header">Industry Movement</h2>

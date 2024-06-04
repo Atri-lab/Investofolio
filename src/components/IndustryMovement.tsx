@@ -1,14 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaArrowUp, FaArrowDown } from 'react-icons/fa';
 import '../styles/IndustryMovement.css';
-
-const industryData = [
-  { sector: 'Tech', change: 1.5, up: true },
-  { sector: 'Fintech', change: -0.7, up: false },
-  { sector: 'Healthcare', change: 2.1, up: true },
-  { sector: 'Automotive', change: -1.3, up: false },
-  { sector: 'Energy', change: 0.4, up: true },
-];
+import data from '../sector_performance.json'; 
 
 const stockTickerData = [
   { name: 'AAPL', price: 145.09, change: 1.2, up: true },
@@ -23,24 +16,26 @@ const IndustryMovement: React.FC = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % industryData.length);
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % data.length);
     }, 10000); // Change every 10 seconds
     return () => clearInterval(interval);
   }, []);
 
-  const { sector, change, up } = industryData[currentIndex];
+  const { sector, change, up } = data[currentIndex];
 
   return (
     <div className="industry-movement-container">
       <div className={`tv-frame ${up ? 'up' : 'down'}`}>
         <div className="tv-screen">
           <div className="stock-info">
+
             <span className="sector">{sector}</span>
             <span className="change">
               {up ? <FaArrowUp className="arrow-icon" /> : <FaArrowDown className="arrow-icon" />}
               {up ? '+' : ''}
               {change}%
             </span>
+
           </div>
           <div className="stock-ticker">
             <div className="ticker-items">

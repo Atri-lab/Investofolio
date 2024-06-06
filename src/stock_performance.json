@@ -1,0 +1,30 @@
+[
+    {
+        "stock": "NVDA",
+        "price": 1224.4,
+        "percent": 5.16,
+        "change": 60.03,
+        "up": true
+    },
+    {
+        "stock": "AAPL",
+        "price": 195.87,
+        "percent": 0.78,
+        "change": 1.52,
+        "up": true
+    },
+    {
+        "stock": "TSLA",
+        "price": 175.0,
+        "percent": 0.13,
+        "change": 0.23,
+        "up": true
+    },
+    {
+        "stock": "GS",
+        "price": 459.46,
+        "percent": 0.91,
+        "change": 4.16,
+        "up": true
+    }
+]

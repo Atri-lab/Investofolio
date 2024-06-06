@@ -1,84 +1,79 @@
-import React from 'react';
-import '../styles/Dashboard.css';
+import React, { useState, useEffect } from 'react';
 import { FaArrowUp, FaArrowDown, FaApple, FaBuilding, FaMicrochip, FaCar, FaPlusCircle } from 'react-icons/fa';
 import StockGraph from './StockGraph';
 import IndustryCalendar from './IndustryCalendar';
 import IndustryMovement from './IndustryMovement';
+import stockData from '../stock_performance.json';
+import '../styles/Dashboard.css';
 
 const Dashboard: React.FC = () => {
+  const [currentTime, setCurrentTime] = useState(new Date());
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000); // Update every second
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const formatTime = (date: Date) => {
+    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+  };
+
+  const isMarketOpen = (date: Date) => {
+    const day = date.getDay();
+    const hour = date.getHours();
+    const minute = date.getMinutes();
+    // Assuming market hours are Monday to Friday, 9:30 AM to 4:00 PM ET
+    if (day >= 1 && day <= 5) { // Monday to Friday
+      if ((hour > 9 || (hour === 9 && minute >= 30)) && hour < 16) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+  const marketStatus = isMarketOpen(currentTime) ? "Market Open" : "Market Closed";
+
   return (
     <div className="dashboard-container">
-      <h1 className="dashboard-header"></h1>
+      <h1 className="dashboard-header">Dashboard</h1>
       <div className="portfolio-section">
         <h2 className="section-header">Stocks</h2>
-        <div className="stock-card">
-          <div className="stock-card-header">
-            <FaMicrochip size={24} color="#76B900" />
-            <h3>NVIDIA Corporation (NVDA)</h3>
+        {stockData.map((stock, index) => (
+          <div key={index} className="stock-card">
+            <div className="stock-card-header">
+              {stock.stock === 'NVDA' && <FaMicrochip size={24} color="#76B900" />}
+              {stock.stock === 'AAPL' && <FaApple size={24} color="#A3AAAE" />}
+              {stock.stock === 'TSLA' && <FaCar size={24} color="#E82127" />}
+              {stock.stock === 'GS' && <FaBuilding size={24} color="#D4AF37" />}
+              <h3>{stock.stock}</h3>
+            </div>
+            <div className="stock-price">
+              <span className="price">${stock.price}</span>
+              <span className={`change ${stock.up ? 'up' : 'down'}`}>
+                {stock.up ? <FaArrowUp /> : <FaArrowDown />} {stock.change}
+              </span>
+              <span className={`change-percentage ${stock.up ? 'up' : 'down'}`}>
+                ({stock.up ? '+' : ''}{stock.percent}%)
+              </span>
+            </div>
+            <p>As of {formatTime(currentTime)}. {marketStatus}.</p>
           </div>
-          <div className="stock-price">
-            <span className="price">$949.41</span>
-            <span className="change down">
-              <FaArrowDown /> -4.45
-            </span>
-            <span className="change-percentage down">(-0.47%)</span>
-          </div>
-          <p>As of 1:09 PM EDT. Market Open.</p>
-        </div>
-        <div className="stock-card">
-          <div className="stock-card-header">
-            <FaApple size={24} color="#A3AAAE" />
-            <h3>Apple Inc. (AAPL)</h3>
-          </div>
-          <div className="stock-price">
-            <span className="price">$145.09</span>
-            <span className="change up">
-              <FaArrowUp /> +2.15
-            </span>
-            <span className="change-percentage up">(+1.50%)</span>
-          </div>
-          <p>As of 1:09 PM EDT. Market Open.</p>
-        </div>
-        <div className="stock-card">
-          <div className="stock-card-header">
-            <FaCar size={24} color="#E82127" />
-            <h3>Tesla Inc. (TSLA)</h3>
-          </div>
-          <div className="stock-price">
-            <span className="price">$650.57</span>
-            <span className="change up">
-              <FaArrowUp /> +14.65
-            </span>
-            <span className="change-percentage up">(+2.30%)</span>
-          </div>
-          <p>As of 1:09 PM EDT. Market Open.</p>
-        </div>
-        <div className="stock-card">
-          <div className="stock-card-header">
-            <FaBuilding size={24} color="#D4AF37" />
-            <h3>Goldman Sachs (GS)</h3>
-          </div>
-          <div className="stock-price">
-            <span className="price">$370.22</span>
-            <span className="change down">
-              <FaArrowDown /> -2.98
-            </span>
-            <span className="change-percentage down">(-0.80%)</span>
-          </div>
-          <p>As of 1:09 PM EDT. Market Open.</p>
-        </div>
+        ))}
         <div className="stock-card coming-soon">
           <FaPlusCircle size={40} color="#333" />
           <h3>Coming Soon</h3>
         </div>
       </div>
       <div className="graph-section">
-        <h2 className="section-header"></h2>
+        <h2 className="section-header">Graph</h2>
         <StockGraph />
       </div>
       <div className="calendar-section">
         <div className="calendar-widget">
-          <h2 className="section-header"></h2>
+          <h2 className="section-header">Calendar</h2>
           <IndustryCalendar />
         </div>
         <div className="industry-movement-widget">

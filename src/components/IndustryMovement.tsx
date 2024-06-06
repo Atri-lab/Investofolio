@@ -1,15 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { FaArrowUp, FaArrowDown } from 'react-icons/fa';
 import '../styles/IndustryMovement.css';
-import data from '../sector_performance.json'; 
-
-const stockTickerData = [
-  { name: 'AAPL', price: 145.09, change: 1.2, up: true },
-  { name: 'GOOGL', price: 2734.57, change: -2.3, up: false },
-  { name: 'AMZN', price: 3401.46, change: 0.5, up: true },
-  { name: 'TSLA', price: 709.74, change: -1.7, up: false },
-  { name: 'MSFT', price: 299.35, change: 2.8, up: true },
-];
+import data from '../sector_performance.json';
+import stockData from '../stock_performance.json';
 
 const IndustryMovement: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -28,23 +21,21 @@ const IndustryMovement: React.FC = () => {
       <div className={`tv-frame ${up ? 'up' : 'down'}`}>
         <div className="tv-screen">
           <div className="stock-info">
-
             <span className="sector">{sector}</span>
             <span className="change">
               {up ? <FaArrowUp className="arrow-icon" /> : <FaArrowDown className="arrow-icon" />}
               {up ? '+' : ''}
               {change}%
             </span>
-
           </div>
           <div className="stock-ticker">
             <div className="ticker-items">
-              {stockTickerData.map((stock, index) => (
+              {stockData.map((stock, index) => (
                 <div key={index} className="ticker-item">
-                  <span className="ticker-name">{stock.name}</span>
+                  <span className="ticker-name">{stock.stock}</span>
                   <span className={`ticker-change ${stock.up ? 'up' : 'down'}`}>
                     {stock.up ? <FaArrowUp /> : <FaArrowDown />}
-                    {stock.price} ({stock.up ? '+' : ''}{stock.change}%)
+                    {stock.price} ({stock.up ? '+' : '-'}{stock.percent}%)
                   </span>
                 </div>
               ))}

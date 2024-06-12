@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 import { FaInfoCircle } from 'react-icons/fa';
@@ -68,8 +68,21 @@ const data = [
 ];
 
 const StockGraph: React.FC = () => {
+  const [selectedStock, setSelectedStock] = useState<string | null>(null);
+
+  const handleStockSelect = (stock: string | null) => {
+    setSelectedStock(stock);
+  };
+
   return (
     <div className="graph-wrapper">
+      <div className="stock-selection">
+        <button onClick={() => handleStockSelect(null)}>All</button>
+        <button onClick={() => handleStockSelect('NVIDIA')}>NVIDIA</button>
+        <button onClick={() => handleStockSelect('Apple')}>Apple</button>
+        <button onClick={() => handleStockSelect('Tesla')}>Tesla</button>
+        <button onClick={() => handleStockSelect('GoldmanSachs')}>Goldman Sachs</button>
+      </div>
       <ResponsiveContainer width="88%" height={320}>
         <LineChart data={data}>
           <CartesianGrid strokeDasharray="3 3" />
@@ -77,10 +90,10 @@ const StockGraph: React.FC = () => {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Line type="monotone" dataKey="NVIDIA" stroke="#8884d8" />
-          <Line type="monotone" dataKey="Apple" stroke="#82ca9d" />
-          <Line type="monotone" dataKey="Tesla" stroke="#ffc658" />
-          <Line type="monotone" dataKey="GoldmanSachs" stroke="#ff7300" />
+          {!selectedStock || selectedStock === 'NVIDIA' ? <Line type="monotone" dataKey="NVIDIA" stroke="#8884d8" /> : null}
+          {!selectedStock || selectedStock === 'Apple' ? <Line type="monotone" dataKey="Apple" stroke="#82ca9d" /> : null}
+          {!selectedStock || selectedStock === 'Tesla' ? <Line type="monotone" dataKey="Tesla" stroke="#ffc658" /> : null}
+          {!selectedStock || selectedStock === 'GoldmanSachs' ? <Line type="monotone" dataKey="GoldmanSachs" stroke="#ff7300" /> : null}
           <Line type="monotone" dataKey="movingAvg" stroke="#0000FF" dot={false} />
           <Line type="monotone" dataKey="volume" stroke="#413ea0" />
           <Line type="monotone" dataKey="risk" stroke="#FF0000" />

@@ -1,0 +1,59 @@
+.stock-graph-container {
+  display: flex;
+  flex-direction: row; /* Arrange children in a row */
+  justify-content: space-between; /* Space between the graph and the summary */
+  align-items: flex-start; /* Align items at the start vertically */
+}
+
+.single-stock-graph-graph-wrapper {
+  flex: 3; /* Takes 60% of the available width */
+  height: 320px; /* Adjusted height to fit the graph */
+  display: flex;
+  flex-direction: column; /* Ensure vertical arrangement */
+  align-items: center; /* Center the graph vertically */
+  justify-content: left; /* Center the graph horizontally */
+}
+
+.single-stock-summary-section {
+  flex: 2; /* Takes 40% of the available width */
+  width: auto;
+  height: 320px; /* Ensures it occupies the full height */
+  display: flex;
+  flex-direction: column; /* Ensures vertical arrangement */
+  justify-content: right; /* Centers the content vertically */
+  background: linear-gradient(145deg, #ffffff, #e6e6e6);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.single-stock-summary-section:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.single-stock-summary-section h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+.single-stock-summary-section p {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+  font-size: 16px;
+  color: #555;
+}
+
+.single-stock-info-icon {
+  margin-right: 10px;
+  color: #007bff;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.single-stock-info-icon:hover {
+  transform: scale(1.2);
+}

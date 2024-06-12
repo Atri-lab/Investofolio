@@ -3,11 +3,15 @@ import { FaArrowUp, FaArrowDown, FaApple, FaBuilding, FaMicrochip, FaCar, FaPlus
 import StockGraph from './StockGraph';
 import IndustryCalendar from './IndustryCalendar';
 import IndustryMovement from './IndustryMovement';
+import StockDetail from './StockDetail';
 import stockData from '../stock_performance.json';
 import '../styles/Dashboard.css';
+import { Stock } from '../types/Stock';
+
 
 const Dashboard: React.FC = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
+  const [selectedStock, setSelectedStock] = useState<Stock | null>(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -36,13 +40,25 @@ const Dashboard: React.FC = () => {
 
   const marketStatus = isMarketOpen(currentTime) ? "Market Open" : "Market Closed";
 
+  const handleStockClick = (stock: Stock) => {
+    setSelectedStock(stock);
+  };
+
+  const handleBackClick = () => {
+    setSelectedStock(null);
+  };
+
+  if (selectedStock) {
+    return <StockDetail stock={selectedStock} onBack={handleBackClick} />;
+  }
+
   return (
     <div className="dashboard-container">
       <h1 className="dashboard-header">Dashboard</h1>
       <div className="portfolio-section">
         <h2 className="section-header">Stocks</h2>
         {stockData.map((stock, index) => (
-          <div key={index} className="stock-card">
+          <div key={index} className="stock-card" onClick={() => handleStockClick(stock)}>
             <div className="stock-card-header">
               {stock.stock === 'NVDA' && <FaMicrochip size={24} color="#76B900" />}
               {stock.stock === 'AAPL' && <FaApple size={24} color="#A3AAAE" />}
@@ -68,7 +84,6 @@ const Dashboard: React.FC = () => {
         </div>
       </div>
       <div className="graph-section">
-        <h2 className="section-header">Graph</h2>
         <StockGraph />
       </div>
       <div className="calendar-section">

@@ -3,11 +3,17 @@ from bs4 import BeautifulSoup
 import json
 
 class Stock:
-    def __init__(self, price, percent, change, up):
+    def __init__(self, price, percent, change, up, volume, beta, pe, rev, ebidta, cap):
         self.price = price
         self.percent = percent
         self.change = change
         self.up = up
+        self.volume = volume 
+        self.beta = beta
+        self.peratio = pe 
+        self.revenue = rev
+        self.ebidta =ebidta
+        self.marketcap = cap
 
 def get_sector_performance(url):
     response = requests.get(url)
@@ -32,9 +38,17 @@ def get_stock_performance(url):
         percent = float(percent)
         tag_up = change > 0
 
-        stock = Stock(price, percent, change, tag_up)
+        volume = soup.find("li", class_="last-sm last-lg svelte-tx3nkj").get_text()
+        beta = soup.find("span", class_="last-sm last-lg svelte-tx3nkj").get_text()
+        pe_ratio = soup.find("fin-streamer", data_field_="trailingPE").get_text()
+        revenue = soup.find("span", text="Revenue").find_next_sibling("span").get_text()
+        ebidta = soup.find("span", text="EBITDA").find_next_sibling("span").get_text()
+        market_cap = soup.find("span", text="Market Cap").find_next_sibling("span").get_text()
+
+        stock = Stock(price, percent, change, tag_up, volume, beta, pe_ratio, revenue, ebidta, market_cap)
         return stock
     return None
+
 
 sectors = {
     "Tech": "https://finance.yahoo.com/sectors/technology/",
@@ -70,6 +84,7 @@ stocks = {
     "GS": "https://finance.yahoo.com/quote/GS/"
 }
 
+
 stock_data = []
 for symbol, url in stocks.items():
     stock = get_stock_performance(url)
@@ -79,8 +94,15 @@ for symbol, url in stocks.items():
             "price": stock.price,
             "percent": stock.percent,
             "change": stock.change,
-            "up": stock.up
-        })
+            "up": stock.up,
+            "volume": stock.volume,
+            "beta": stock.beta,
+            "peratio": stock.peratio,
+            "revenue": stock.revenue,
+            "ebidta": stock.ebidta,
+            "marketcap": stock.marketcap
+    })
+
 
 with open("./src/stock_performance.json", 'w') as f:
     json.dump(stock_data, f, indent=4)

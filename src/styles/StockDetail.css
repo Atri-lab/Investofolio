@@ -1,0 +1,102 @@
+.stock-detail-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .stock-detail-back-button {
+    padding: 10px 20px;
+    border: 2px solid black;
+    background-color: white;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .stock-detail-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .stock-detail-card-header {
+    display: flex;
+    align-items: center;
+    margin-top: -10px;
+    margin-right: 20px;
+  }
+  
+  .stock-detail-card-header h3 {
+    margin-left: 10px;
+    font-size: 24px;
+  }
+  
+  .stock-detail-dotted-border {
+    border-left: 1px dotted #ddd;
+    margin: 0 20px;
+    height: 40px;
+  }
+  
+  .stock-detail-price {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 20px;
+  }
+  
+  .stock-detail-price .price {
+    margin-bottom: 5px;
+  }
+  
+  .stock-detail-price .change {
+    display: flex;
+    align-items: center;
+  }
+  
+  .stock-detail-price .change.up {
+    color: green;
+  }
+  
+  .stock-detail-price .change.down {
+    color: red;
+  }
+  
+  .stock-detail-price .change-percentage {
+    font-size: 18px;
+    margin-left: 5px;
+  }
+  
+  .stock-detail-price .change-percentage.up {
+    color: green;
+  }
+  
+  .stock-detail-price .change-percentage.down {
+    color: red;
+  }
+  
+  .stock-detail-graph {
+    margin-top: 20px;
+  }
+  
+  .stock-detail-graph h2 {
+    margin-bottom: 20px;
+  }
+  
+  @media (min-width: 768px) {
+    .stock-detail-card {
+      flex-direction: row;
+      align-items: flex-start;
+    }
+  
+    .stock-detail-price {
+      flex-direction: column;
+      align-items: flex-start;
+      margin-top: 0;
+    }
+  
+    .stock-detail-price .price {
+      margin-bottom: 5px;
+    }
+  }
+  

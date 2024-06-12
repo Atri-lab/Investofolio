@@ -108,22 +108,22 @@ const SingleStockGraph: React.FC = () => {
             <div className="single-stock-summary-section">
                 <h3>Stock Performance Summary</h3>
                 <p>
-                    <FaInfoCircle data-tooltip-id="riskTip" className="single-stock-graph-info-icon" /> Volume: placeholder
+                    <FaInfoCircle data-tooltip-id="riskTip" className="single-stock-info-icon" /> Volume: placeholder
                 </p>
                 <p>
-                    <FaInfoCircle data-tooltip-id="volumeTip" className="single-stock-graph-info-icon" /> Beta: placeholder
+                    <FaInfoCircle data-tooltip-id="volumeTip" className="single-stock-info-icon" /> Beta: placeholder
                 </p>
                 <p>
-                    <FaInfoCircle data-tooltip-id="movingAvgTip" className="single-stock-graph-info-icon" /> P/E Ratio: placeholder
+                    <FaInfoCircle data-tooltip-id="movingAvgTip" className="single-stock-info-icon" /> P/E Ratio: placeholder
                 </p>
                 <p>
-                    <FaInfoCircle data-tooltip-id="sharpeRatioTip" className="single-stock-graph-info-icon" /> Revenue: placeholder
+                    <FaInfoCircle data-tooltip-id="sharpeRatioTip" className="single-stock-info-icon" /> Revenue: placeholder
                 </p>
                 <p>
-                    <FaInfoCircle data-tooltip-id="betaTip" className="single-stock-graph-info-icon" /> Ebidta: placeholder
+                    <FaInfoCircle data-tooltip-id="betaTip" className="single-stock-info-icon" /> Ebidta: placeholder
                 </p>
                 <p>
-                    <FaInfoCircle data-tooltip-id="performanceTip" className="single-stock-graph-info-icon" /> Market Cap: placeholder
+                    <FaInfoCircle data-tooltip-id="performanceTip" className="single-stock-info-icon" /> Market Cap: placeholder
                 </p>
             </div>
             <ReactTooltip id="riskTip" place="top">

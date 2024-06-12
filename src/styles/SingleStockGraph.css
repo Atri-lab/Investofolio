@@ -7,7 +7,7 @@
 
 .single-stock-graph-graph-wrapper {
   flex: 3; /* 60 precent of width  */
-  height: 500px; 
+  height: 400px; 
   display: flex;
   flex-direction: column; /* vertical */
   align-items: center; 
@@ -20,15 +20,18 @@
   height: 320px; 
   display: flex;
   flex-direction: column; /* vertical argenment */
-  justify-content: right; /* ?? */
-  background: linear-gradient(145deg, #ffffff, #e6e6e6);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  justify-content: right; 
+  margin-left: 100px;
+  /*background: linear-gradient(145deg, #ffffff, #e6e6e6);*/
+  /*box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);*/
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
 
 
 .single-stock-summary-section h3 {
+  display: flex;
+  align-items: center;
   margin-top: 0;
   margin-bottom: 10px;
   font-size: 20px;

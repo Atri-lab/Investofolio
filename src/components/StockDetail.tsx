@@ -12,7 +12,6 @@ interface StockDetailProps {
 const StockDetail: React.FC<StockDetailProps> = ({ stock, onBack }) => {
   return (
     <div className="stock-detail-container">
-      <button onClick={onBack} className="stock-detail-back-button">Back</button>
       <div className="stock-detail-card">
         <div className="stock-detail-card-header">
           {stock.stock === 'NVDA' && <FaMicrochip size={24} color="#76B900" />}
@@ -35,6 +34,7 @@ const StockDetail: React.FC<StockDetailProps> = ({ stock, onBack }) => {
       <div className="stock-detail-graph">
         <SingleStockGraph />
       </div>
+      <button onClick={onBack} className="stock-detail-back-button">Back</button>
     </div>
   );
 };

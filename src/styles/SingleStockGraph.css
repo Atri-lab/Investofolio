@@ -1,59 +1,15 @@
 .stock-graph-container {
+  width: 100%;
   display: flex;
-  flex-direction: row; /* creates row */
-  justify-content: space-between; /* creates space */
-  align-items: flex-start; /* vert items */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .single-stock-graph-graph-wrapper {
-  flex: 3; /* 60 precent of width  */
-  height: 400px; 
-  display: flex;
-  flex-direction: column; /* vertical */
-  align-items: center; 
-  justify-content: left; /* css is my passsion */
+  width: 100%;
 }
 
 .single-stock-summary-section {
-  flex: 2; /*  40%  */
-  width: auto;
-  height: 320px; 
-  display: flex;
-  flex-direction: column; /* vertical argenment */
-  justify-content: right; 
-  margin-left: 100px;
-  /*background: linear-gradient(145deg, #ffffff, #e6e6e6);*/
-  /*box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);*/
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-
-
-.single-stock-summary-section h3 {
-  display: flex;
-  align-items: center;
-  margin-top: 0;
-  margin-bottom: 10px;
-  font-size: 20px;
-  font-weight: bold;
-  color: #333;
-}
-
-.single-stock-summary-section p {
-  display: flex;
-  align-items: center;
-  margin: 5px 0;
-  font-size: 16px;
-  color: #555;
-}
-
-.single-stock-info-icon {
-  margin-right: 10px;
-  color: #24a924;
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-
-.single-stock-info-icon:hover {
-  transform: scale(1.2);
+  display: none; /* Hide the summary section */
 }

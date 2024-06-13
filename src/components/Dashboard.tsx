@@ -8,7 +8,6 @@ import stockData from '../stock_performance.json';
 import '../styles/Dashboard.css';
 import { Stock } from '../types/Stock';
 
-
 const Dashboard: React.FC = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [selectedStock, setSelectedStock] = useState<Stock | null>(null);
@@ -54,9 +53,9 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className="dashboard-container">
-      <h1 className="dashboard-header">Dashboard</h1>
+      <h1 className="dashboard-header"></h1>
       <div className="portfolio-section">
-        <h2 className="section-header">Stocks</h2>
+        <h2 className="section-header"></h2>
         {stockData.map((stock, index) => (
           <div key={index} className="stock-card" onClick={() => handleStockClick(stock)}>
             <div className="stock-card-header">
@@ -88,7 +87,7 @@ const Dashboard: React.FC = () => {
       </div>
       <div className="calendar-section">
         <div className="calendar-widget">
-          <h2 className="section-header">Calendar</h2>
+          <h2 className="section-header"></h2>
           <IndustryCalendar />
         </div>
         <div className="industry-movement-widget">

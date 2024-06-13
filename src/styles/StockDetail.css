@@ -1,102 +1,167 @@
 .stock-detail-container {
-    padding: 20px;
-    font-family: Arial, sans-serif;
-  }
-  
-  .stock-detail-back-button {
-    padding: 10px 20px;
-    border: 2px solid black;
-    background-color: white;
-    cursor: pointer;
-    font-size: 16px;
-    margin-bottom: 20px;
-  }
-  
-  .stock-detail-card {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 20px;
-    margin-bottom: 20px;
-  }
-  
-  .stock-detail-card-header {
-    display: flex;
-    align-items: center;
-    margin-top: -10px;
-    margin-right: 20px;
-  }
-  
-  .stock-detail-card-header h3 {
-    margin-left: 10px;
-    font-size: 24px;
-  }
-  
-  .stock-detail-dotted-border {
-    border-left: 1px dotted #ddd;
-    margin: 0 20px;
-    height: 40px;
-  }
-  
-  .stock-detail-price {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    font-size: 20px;
-  }
-  
-  .stock-detail-price .price {
-    margin-bottom: 5px;
-  }
-  
-  .stock-detail-price .change {
-    display: flex;
-    align-items: center;
-  }
-  
-  .stock-detail-price .change.up {
-    color: green;
-  }
-  
-  .stock-detail-price .change.down {
-    color: red;
-  }
-  
-  .stock-detail-price .change-percentage {
-    font-size: 18px;
-    margin-left: 5px;
-  }
-  
-  .stock-detail-price .change-percentage.up {
-    color: green;
-  }
-  
-  .stock-detail-price .change-percentage.down {
-    color: red;
-  }
-  
-  .stock-detail-graph {
-    margin-top: 20px;
-  }
-  
-  .stock-detail-graph h2 {
-    margin-bottom: 20px;
-  }
-  
-  @media (min-width: 768px) {
-    .stock-detail-card {
-      flex-direction: row;
-      align-items: flex-start;
-    }
-  
-    .stock-detail-price {
-      flex-direction: column;
-      align-items: flex-start;
-      margin-top: 0;
-    }
-  
-    .stock-detail-price .price {
-      margin-bottom: 5px;
-    }
-  }
-  
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(145deg, #ffffff, #e6e6e6);
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  position: relative;
+}
+
+.stock-detail-back-button {
+  padding: 5px 10px;
+  background-color: transparent;
+  color: #007bff;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  transition: transform 0.2s, color 0.2s;
+}
+
+.stock-detail-back-button:hover {
+  transform: scale(1.1);
+  color: #0056b3;
+}
+
+.stock-detail-header {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center the header horizontally */
+  margin-bottom: 20px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.header-left h1 {
+  margin-left: 10px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+}
+
+.header-divider {
+  height: 40px;
+  width: 2px;
+  background-color: #ccc;
+  margin: 0 20px;
+}
+
+.header-right {
+  text-align: center;
+}
+
+.stock-price {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.stock-change {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 5px; /* Decrease space between price and change */
+}
+
+.stock-change.up {
+  color: #4caf50;
+}
+
+.stock-change.down {
+  color: #f44336;
+}
+
+.stock-detail-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Center the items vertically */
+}
+
+.stock-detail-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: linear-gradient(145deg, #ffffff, #e6e6e6);
+  padding: 7px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.stock-detail-info:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.stock-detail-info-item {
+  display: flex;
+  align-items: center; /* Center items vertically */
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.info-icon {
+  margin-right: 10px;
+  color: #007bff;
+  cursor: pointer;
+}
+
+.metric-key {
+  font-weight: bold;
+  color: #333;
+  flex: 1; /* Take up remaining space */
+}
+
+.metric-value {
+  color: #555;
+  flex: 1; /* Take up remaining space */
+  text-align: right; /* Align value to the right */
+}
+
+.stock-detail-graph {
+  flex: 1;
+  margin: 0 20px;
+}
+
+.summary-section {
+  flex: 1;
+  background: linear-gradient(145deg, #ffffff, #e6e6e6);
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.summary-section:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.summary-section h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+.summary-section p {
+  margin: 5px 0;
+  font-size: 16px;
+  color: #555;
+  display: flex;
+  align-items: center;
+}
+
+.info-icon {
+  margin-right: 10px;
+  color: #007bff;
+  cursor: pointer;
+}

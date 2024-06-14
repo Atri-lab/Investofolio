@@ -98,16 +98,41 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
+.stock-detail-info h3 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #333;
+  text-align: center;
+}
+
 .stock-detail-info-item {
   display: flex;
   align-items: center; /* Center items vertically */
-  justify-content: space-between;
   margin-bottom: 10px;
   font-size: 18px;
 }
 
+.metric-icon {
+  display: flex;
+  align-items: center;
+  margin-right: 1px; /* Reduce space between icon and text by 50% */
+}
+
+.metric-details {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 5px 10px;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+}
+
+.metric-details:hover {
+  background-color: #f0f0f0;
+}
+
 .info-icon {
-  margin-right: 10px;
   color: #007bff;
   cursor: pointer;
 }
@@ -115,12 +140,10 @@
 .metric-key {
   font-weight: bold;
   color: #333;
-  flex: 1; /* Take up remaining space */
 }
 
 .metric-value {
   color: #555;
-  flex: 1; /* Take up remaining space */
   text-align: right; /* Align value to the right */
 }
 
@@ -146,6 +169,18 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
+.about-section h3 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.about-section p {
+  font-size: 16px;
+  color: #555;
+}
+
 .chatbot-section {
   background: linear-gradient(145deg, #ffffff, #e6e6e6);
   padding: 20px;
@@ -160,11 +195,11 @@
 }
 
 .chatbot-section h3 {
-  margin-top: 0;
-  margin-bottom: 10px;
   font-size: 20px;
   font-weight: bold;
+  margin-bottom: 10px;
   color: #333;
+  text-align: center;
 }
 
 .chatbot {

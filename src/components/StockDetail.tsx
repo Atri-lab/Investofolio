@@ -18,27 +18,27 @@ interface StockDetailProps {
 }
 
 const stockData = {
-  previousClose: "213.07",
-  open: "214.78",
-  bid: "212.32 x 100",
-  ask: "212.41 x 100",
-  daysRange: "211.60 - 216.75",
-  fiftyTwoWeekRange: "164.08 - 220.20",
-  volume: "54,871,666",
-  avgVolume: "64,859,633",
-  marketCap: "3.257T"
+  PreviousClose: "213.07",
+  Open: "214.78",
+  Bid: "212.32 x 100",
+  Ask: "212.41 x 100",
+  Range: "211.60 - 216.75",
+  YearRange: "164.08 - 220.20",
+  Volume: "54,871,666",
+  AvgVolume: "64,859,633",
+  MarketCap: "3.257T"
 };
 
 const metricExplanations: { [key: string]: string } = {
-  previousClose: "The last price at which the stock traded during the previous trading session.",
-  open: "The price at which the stock opened for trading during the current trading session.",
-  bid: "The highest price a buyer is willing to pay for the stock.",
-  ask: "The lowest price a seller is willing to accept for the stock.",
-  daysRange: "The lowest and highest prices at which the stock traded during the current trading session.",
-  fiftyTwoWeekRange: "The lowest and highest prices at which the stock traded over the past 52 weeks.",
-  volume: "The total number of shares traded during the current trading session.",
-  avgVolume: "The average number of shares traded per day over a specified period.",
-  marketCap: "The total market value of a company's outstanding shares."
+  PreviousClose: "The last price at which the stock traded during the previous trading session.",
+  Open: "The price at which the stock opened for trading during the current trading session.",
+  Bid: "The highest price a buyer is willing to pay for the stock.",
+  Ask: "The lowest price a seller is willing to accept for the stock.",
+  Range: "The lowest and highest prices at which the stock traded during the current trading session.",
+  YearRange: "The lowest and highest prices at which the stock traded over the past 52 weeks.",
+  Volume: "The total number of shares traded during the current trading session.",
+  AvgVolume: "The average number of shares traded per day over a specified period.",
+  MarketCap: "The total market value of a company's outstanding shares."
 };
 
 const StockDetail: React.FC<StockDetailProps> = ({ stock, onBack }) => {
@@ -62,14 +62,19 @@ const StockDetail: React.FC<StockDetailProps> = ({ stock, onBack }) => {
       </div>
       <div className="stock-detail-content">
         <div className="stock-detail-info">
+          <h3></h3>
           {Object.entries(stockData).map(([key, value], index) => (
             <div key={index} className="stock-detail-info-item">
-              <FaInfoCircle data-tooltip-id={`tooltip-${key}`} className="info-icon" />
-              <span className="metric-key">{key.replace(/([A-Z])/g, ' $1')}</span>
-              <span className="metric-value">{value}</span>
-              <Tooltip id={`tooltip-${key}`} place="left">
-                {metricExplanations[key]}
-              </Tooltip>
+              <div className="metric-icon">
+                <FaInfoCircle data-tooltip-id={`tooltip-${key}`} className="info-icon" />
+                <Tooltip id={`tooltip-${key}`} place="right">
+                  {metricExplanations[key]}
+                </Tooltip>
+              </div>
+              <div className="metric-details">
+                <span className="metric-key">{key.replace(/([A-Z])/g, ' $1')}:</span>
+                <span className="metric-value">{value}</span>
+              </div>
             </div>
           ))}
         </div>

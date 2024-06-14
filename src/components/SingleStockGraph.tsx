@@ -75,20 +75,20 @@ const SingleStockGraph: React.FC<SingleStockGraphProps> = ({ stock }) => {
       <div className="single-stock-graph-graph-wrapper">
         <ResponsiveContainer width="100%" height={200}>
           <LineChart data={data}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            {stock === 'NVIDIA' && <Line type="monotone" dataKey="NVIDIA" stroke="#8884d8" />}
-            {stock === 'Apple' && <Line type="monotone" dataKey="Apple" stroke="#82ca9d" />}
-            {stock === 'Tesla' && <Line type="monotone" dataKey="Tesla" stroke="#ffc658" />}
-            {stock === 'GoldmanSachs' && <Line type="monotone" dataKey="GoldmanSachs" stroke="#ff7300" />}
-            <Line type="monotone" dataKey="movingAvg" stroke="#0000FF" dot={false} />
-            <Line type="monotone" dataKey="volume" stroke="#413ea0" />
-            <Line type="monotone" dataKey="risk" stroke="#FF0000" />
-            <Line type="monotone" dataKey="sharpeRatio" stroke="#FF1493" dot={false} />
-            <Line type="monotone" dataKey="beta" stroke="#7B68EE" dot={false} />
+            <CartesianGrid strokeDasharray="3 3" stroke="#444" />
+            <XAxis dataKey="name" tick={{ fill: '#888' }} />
+            <YAxis tick={{ fill: '#888' }} />
+            <Tooltip contentStyle={{ backgroundColor: '#222', border: 'none' }} itemStyle={{ color: '#ddd' }} />
+            <Legend verticalAlign="top" height={36} />
+            {stock === 'NVIDIA' && <Line type="monotone" dataKey="NVIDIA" stroke="#00e676" strokeWidth={2} dot={false} activeDot={{ r: 8 }} />}
+            {stock === 'Apple' && <Line type="monotone" dataKey="Apple" stroke="#82ca9d" strokeWidth={2} dot={false} activeDot={{ r: 8 }} />}
+            {stock === 'Tesla' && <Line type="monotone" dataKey="Tesla" stroke="#ffc658" strokeWidth={2} dot={false} activeDot={{ r: 8 }} />}
+            {stock === 'GoldmanSachs' && <Line type="monotone" dataKey="GoldmanSachs" stroke="#ff7300" strokeWidth={2} dot={false} activeDot={{ r: 8 }} />}
+            <Line type="monotone" dataKey="movingAvg" stroke="#007bff" strokeWidth={1.5} dot={false} />
+            <Line type="monotone" dataKey="volume" stroke="#413ea0" strokeWidth={1.5} dot={false} />
+            <Line type="monotone" dataKey="risk" stroke="#ff1744" strokeWidth={1.5} dot={false} />
+            <Line type="monotone" dataKey="sharpeRatio" stroke="#d500f9" strokeWidth={1.5} dot={false} />
+            <Line type="monotone" dataKey="beta" stroke="#7b68ee" strokeWidth={1.5} dot={false} />
           </LineChart>
         </ResponsiveContainer>
       </div>

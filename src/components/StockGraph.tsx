@@ -75,32 +75,34 @@ const StockGraph: React.FC = () => {
   };
 
   return (
-    <div className="graph-wrapper">
-      <div className="stock-selection">
-        <button onClick={() => handleStockSelect(null)}>All</button>
-        <button onClick={() => handleStockSelect('NVIDIA')}>NVIDIA</button>
-        <button onClick={() => handleStockSelect('Apple')}>Apple</button>
-        <button onClick={() => handleStockSelect('Tesla')}>Tesla</button>
-        <button onClick={() => handleStockSelect('GoldmanSachs')}>Goldman Sachs</button>
+    <div className="stock-graph-wrapper">
+      <div className="stock-graph-container">
+        <div className="stock-selection">
+          <button className={!selectedStock ? 'selected' : ''} onClick={() => handleStockSelect(null)}>All</button>
+          <button className={selectedStock === 'NVIDIA' ? 'selected' : ''} onClick={() => handleStockSelect('NVIDIA')}>NVIDIA</button>
+          <button className={selectedStock === 'Apple' ? 'selected' : ''} onClick={() => handleStockSelect('Apple')}>Apple</button>
+          <button className={selectedStock === 'Tesla' ? 'selected' : ''} onClick={() => handleStockSelect('Tesla')}>Tesla</button>
+          <button className={selectedStock === 'GoldmanSachs' ? 'selected' : ''} onClick={() => handleStockSelect('GoldmanSachs')}>Goldman Sachs</button>
+        </div>
+        <ResponsiveContainer width="100%" height={320}>
+          <LineChart data={data}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            {!selectedStock || selectedStock === 'NVIDIA' ? <Line type="monotone" dataKey="NVIDIA" stroke="#8884d8" /> : null}
+            {!selectedStock || selectedStock === 'Apple' ? <Line type="monotone" dataKey="Apple" stroke="#82ca9d" /> : null}
+            {!selectedStock || selectedStock === 'Tesla' ? <Line type="monotone" dataKey="Tesla" stroke="#ffc658" /> : null}
+            {!selectedStock || selectedStock === 'GoldmanSachs' ? <Line type="monotone" dataKey="GoldmanSachs" stroke="#ff7300" /> : null}
+            <Line type="monotone" dataKey="movingAvg" stroke="#0000FF" dot={false} />
+            <Line type="monotone" dataKey="volume" stroke="#413ea0" />
+            <Line type="monotone" dataKey="risk" stroke="#FF0000" />
+            <Line type="monotone" dataKey="sharpeRatio" stroke="#FF1493" dot={false} />
+            <Line type="monotone" dataKey="beta" stroke="#7B68EE" dot={false} />
+          </LineChart>
+        </ResponsiveContainer>
       </div>
-      <ResponsiveContainer width="88%" height={320}>
-        <LineChart data={data}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          {!selectedStock || selectedStock === 'NVIDIA' ? <Line type="monotone" dataKey="NVIDIA" stroke="#8884d8" /> : null}
-          {!selectedStock || selectedStock === 'Apple' ? <Line type="monotone" dataKey="Apple" stroke="#82ca9d" /> : null}
-          {!selectedStock || selectedStock === 'Tesla' ? <Line type="monotone" dataKey="Tesla" stroke="#ffc658" /> : null}
-          {!selectedStock || selectedStock === 'GoldmanSachs' ? <Line type="monotone" dataKey="GoldmanSachs" stroke="#ff7300" /> : null}
-          <Line type="monotone" dataKey="movingAvg" stroke="#0000FF" dot={false} />
-          <Line type="monotone" dataKey="volume" stroke="#413ea0" />
-          <Line type="monotone" dataKey="risk" stroke="#FF0000" />
-          <Line type="monotone" dataKey="sharpeRatio" stroke="#FF1493" dot={false} />
-          <Line type="monotone" dataKey="beta" stroke="#7B68EE" dot={false} />
-        </LineChart>
-      </ResponsiveContainer>
       <div className="summary-section">
         <h3>Portfolio Summary</h3>
         <p>

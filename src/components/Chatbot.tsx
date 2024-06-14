@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import '../styles/Chatbot.css';
 
-const API_KEY = ''; // insert API key
+const API_KEY = 'AIzaSyCL6elvZ52diTQeZAtZLbhzAxFgAm6G6do'; // insert your API key here
 
 const genAI = new GoogleGenerativeAI(API_KEY);
 
@@ -14,6 +14,7 @@ interface Message {
 const Chatbot: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
+  const [loading, setLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -26,6 +27,7 @@ const Chatbot: React.FC = () => {
     const newMessages: Message[] = [...messages, { text: input, role: 'user' }];
     setMessages(newMessages);
     setInput('');
+    setLoading(true);
 
     const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
     const chat = model.startChat({
@@ -40,6 +42,7 @@ const Chatbot: React.FC = () => {
     const response = await result.response;
     const text = await response.text();
 
+    setLoading(false);
     setMessages([...newMessages, { text, role: 'model' }]);
   };
 
@@ -51,6 +54,13 @@ const Chatbot: React.FC = () => {
             {msg.text}
           </div>
         ))}
+        {loading && (
+          <div className="chatbot-message model loading">
+            <div className="dot-flashing"></div>
+            <div className="dot-flashing"></div>
+            <div className="dot-flashing"></div>
+          </div>
+        )}
         <div ref={messagesEndRef} />
       </div>
       <div className="chatbot-input-container">

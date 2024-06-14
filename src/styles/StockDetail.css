@@ -65,7 +65,7 @@
 .stock-change {
   font-size: 20px;
   font-weight: bold;
-  margin-top: 5px; /* Decrease space between price and change */
+  margin-top: -15px; /* Decrease space between price and change */
 }
 
 .stock-change.up {
@@ -80,6 +80,8 @@
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   grid-gap: 20px;
+  z-index: 1; /* Make sure the text appears above surrounding components */
+
 }
 
 .stock-detail-info {
@@ -91,11 +93,15 @@
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   transition: transform 0.2s, box-shadow 0.2s;
+  z-index: 1; /* Make sure the text appears above surrounding components */
+
 }
 
 .stock-detail-info:hover {
   transform: translateY(-10px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1; /* Make sure the text appears above surrounding components */
+
 }
 
 .stock-detail-info h3 {
@@ -117,6 +123,7 @@
   display: flex;
   align-items: center;
   margin-right: 1px; /* Reduce space between icon and text by 50% */
+
 }
 
 .metric-details {
@@ -126,6 +133,7 @@
   padding: 5px 10px;
   border-radius: 8px;
   transition: background-color 0.3s;
+  
 }
 
 .metric-details:hover {
@@ -145,6 +153,7 @@
 .metric-value {
   color: #555;
   text-align: right; /* Align value to the right */
+  
 }
 
 .stock-detail-graph-about {

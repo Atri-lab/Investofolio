@@ -2,6 +2,7 @@ import React from 'react';
 import { FaArrowUp, FaArrowDown, FaApple, FaArrowLeft, FaInfoCircle } from 'react-icons/fa';
 import SingleStockGraph from './SingleStockGraph';
 import { Tooltip } from 'react-tooltip';
+import Chatbot from './Chatbot';
 import '../styles/StockDetail.css'; // Import the CSS file
 
 export interface Stock {
@@ -93,11 +94,8 @@ const StockDetail: React.FC<StockDetailProps> = ({ stock, onBack }) => {
           </div>
         </div>
         <div className="chatbot-section">
-          <h3>Chatbot</h3>
-          <div className="chatbot">
-            {/* Placeholder for chatbot */}
-            <p>Chatbot goes here...</p>
-          </div>
+          <h3>Personal TA</h3>
+          <Chatbot />
         </div>
       </div>
     </div>

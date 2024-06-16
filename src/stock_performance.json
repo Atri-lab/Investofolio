@@ -1,30 +1,66 @@
 [
     {
         "stock": "NVDA",
-        "price": 1208.88,
-        "percent": -0.09,
-        "change": -1.1,
-        "up": false
+        "price": 120.28,
+        "percent": -1.23,
+        "change": -1.5,
+        "up": false,
+        "PreviousClose": "121.78 ",
+        "Open": "121.79 ",
+        "Bid": "120.17 x 100",
+        "Ask": "120.30 x 100",
+        "Range": "120.01 - 122.87 ",
+        "YearRange": "39.23 - 125.59 ",
+        "AvgVolume": "476,275,271 ",
+        "Volume": "103,849,704 ",
+        "MarketCap": "2.959T "
     },
     {
         "stock": "AAPL",
-        "price": 196.89,
-        "percent": 1.24,
-        "change": 2.41,
-        "up": true
+        "price": 204.38,
+        "percent": 5.83,
+        "change": 11.26,
+        "up": true,
+        "PreviousClose": "193.12 ",
+        "Open": "193.66 ",
+        "Bid": "204.29 x 200",
+        "Ask": "204.52 x 100",
+        "Range": "193.64 - 205.45 ",
+        "YearRange": "164.08 - 205.45 ",
+        "AvgVolume": "60,814,360 ",
+        "Volume": "94,727,276 ",
+        "MarketCap": "3.134T "
     },
     {
         "stock": "TSLA",
-        "price": 177.48,
-        "percent": -0.26,
-        "change": -0.46,
-        "up": false
+        "price": 167.63,
+        "percent": -3.54,
+        "change": -6.16,
+        "up": false,
+        "PreviousClose": "173.79 ",
+        "Open": "173.92 ",
+        "Bid": "167.53 x 300",
+        "Ask": "167.74 x 300",
+        "Range": "167.58 - 174.75 ",
+        "YearRange": "138.80 - 299.29 ",
+        "AvgVolume": "90,353,330 ",
+        "Volume": "37,757,816 ",
+        "MarketCap": "534.615B "
     },
     {
         "stock": "GS",
-        "price": 454.91,
-        "percent": -0.7,
-        "change": -3.19,
-        "up": false
+        "price": 453.55,
+        "percent": -0.3,
+        "change": -1.36,
+        "up": false,
+        "PreviousClose": "454.91 ",
+        "Open": "452.33 ",
+        "Bid": "453.05 x 1000",
+        "Ask": "454.99 x 800",
+        "Range": "450.30 - 455.36 ",
+        "YearRange": "289.36 - 471.48 ",
+        "AvgVolume": "2,305,874 ",
+        "Volume": "1,697,790 ",
+        "MarketCap": "146.253B "
     }
 ]

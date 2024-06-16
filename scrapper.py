@@ -3,17 +3,20 @@ from bs4 import BeautifulSoup
 import json
 
 class Stock:
-    def __init__(self, price, percent, change, up, volume, beta, pe, rev, ebidta, cap):
+    def __init__(self, price, percent, change, up, prevclose, opene, bid, ask, ranges, range_year, avgvolume, volume, cap):
         self.price = price
         self.percent = percent
         self.change = change
         self.up = up
-        self.volume = volume 
-        self.beta = beta
-        self.peratio = pe 
-        self.revenue = rev
-        self.ebidta =ebidta
-        self.marketcap = cap
+        self.prevclose = prevclose
+        self.opene = opene
+        self.bid = bid
+        self.ask = ask
+        self.ranges = ranges
+        self.range_year = range_year
+        self.avgvolume = avgvolume
+        self.volume = volume
+        self.cap = cap
 
 def get_sector_performance(url):
     response = requests.get(url)
@@ -38,17 +41,19 @@ def get_stock_performance(url):
         percent = float(percent)
         tag_up = change > 0
 
-        volume = soup.find("li", class_="last-sm last-lg svelte-tx3nkj").get_text()
-        beta = soup.find("span", class_="last-sm last-lg svelte-tx3nkj").get_text()
-        pe_ratio = soup.find("fin-streamer", data_field_="trailingPE").get_text()
-        revenue = soup.find("span", text="Revenue").find_next_sibling("span").get_text()
-        ebidta = soup.find("span", text="EBITDA").find_next_sibling("span").get_text()
-        market_cap = soup.find("span", text="Market Cap").find_next_sibling("span").get_text()
+        prevclose = soup.find("fin-streamer", {"data-field": "regularMarketPreviousClose"}).text
+        opene = soup.find("fin-streamer", {"data-field": "regularMarketOpen"}).text
+        bid = soup.find("span", string="Bid").find_next_sibling("span").text
+        ask = soup.find("span", string="Ask").find_next_sibling("span").text
+        ranges = soup.find("fin-streamer", {"data-field": "regularMarketDayRange"}).text
+        range_year = soup.find("fin-streamer", {"data-field": "fiftyTwoWeekRange"}).text
+        avgvolume = soup.find("fin-streamer", {"data-field": "averageVolume"}).text
+        volume = soup.find("fin-streamer", {"data-field": "regularMarketVolume"}).text
+        cap = soup.find("fin-streamer", {"data-field": "marketCap"}).text
 
-        stock = Stock(price, percent, change, tag_up, volume, beta, pe_ratio, revenue, ebidta, market_cap)
+        stock = Stock(price, percent, change, tag_up, prevclose, opene, bid, ask, ranges, range_year, avgvolume, volume, cap)
         return stock
     return None
-
 
 sectors = {
     "Tech": "https://finance.yahoo.com/sectors/technology/",
@@ -84,7 +89,6 @@ stocks = {
     "GS": "https://finance.yahoo.com/quote/GS/"
 }
 
-
 stock_data = []
 for symbol, url in stocks.items():
     stock = get_stock_performance(url)
@@ -95,14 +99,16 @@ for symbol, url in stocks.items():
             "percent": stock.percent,
             "change": stock.change,
             "up": stock.up,
-            "volume": stock.volume,
-            "beta": stock.beta,
-            "peratio": stock.peratio,
-            "revenue": stock.revenue,
-            "ebidta": stock.ebidta,
-            "marketcap": stock.marketcap
-    })
-
+            "PreviousClose": stock.prevclose,
+            "Open": stock.opene,
+            "Bid": stock.bid,
+            "Ask": stock.ask,
+            "Range": stock.ranges,
+            "YearRange": stock.range_year,
+            "AvgVolume": stock.avgvolume,
+            "Volume": stock.volume,
+            "MarketCap": stock.cap
+        })
 
 with open("./src/stock_performance.json", 'w') as f:
     json.dump(stock_data, f, indent=4)

@@ -1,77 +1,54 @@
 import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import '../styles/SingleStockGraph.css';
+import historicalData from '../historical_data.json'; // Adjust path as needed
 
-const data = [
-  {
-    name: 'Feb',
-    NVIDIA: 66.06,
-    Apple: 183.09,
-    Tesla: 255.19,
-    GoldmanSachs: 368.14,
-  },
-  {
-    name: 'Mar',
-    NVIDIA: 79.99,
-    Apple: 179.66,
-    Tesla: 200.52,
-    GoldmanSachs: 392.19,
-  },
-  {
-    name: 'Apr',
-    NVIDIA: 90.37,
-    Apple: 169.30,
-    Tesla: 177.45,
-    GoldmanSachs: 410.30,
-  },
-  {
-    name: 'May',
-    NVIDIA: 86.40,
-    Apple: 186.35,
-    Tesla: 179.31,
-    GoldmanSachs: 439.40,
-  },
-  {
-    name: 'Jun',
-    NVIDIA: 131.88,
-    Apple: 212.49,
-    Tesla: 178.01,
-    GoldmanSachs: 446.46,
-  },
-];
+// Define type for historical data
+interface HistoricalData {
+  NVDA: { Open: number; Month: string; }[];
+  AAPL: { Open: number; Month: string; }[];
+  TSLA: { Open: number; Month: string; }[];
+  GS: { Open: number; Month: string; }[];
+}
 
 interface SingleStockGraphProps {
-  stock: string;
+  stock: keyof HistoricalData; // Ensure stock is one of 'NVDA', 'AAPL', 'TSLA', 'GS'
 }
 
 const stockMap: { [key: string]: string } = {
-  NVIDIA: "NVIDIA",
-  Apple: "Apple",
-  Tesla: "Tesla",
-  GoldmanSachs: "GoldmanSachs"
+  NVDA: "NVIDIA",
+  AAPL: "Apple",
+  TSLA: "Tesla",
+  GS: "GoldmanSachs"
 };
 
 const SingleStockGraph: React.FC<SingleStockGraphProps> = ({ stock }) => {
+  // Use type assertion to tell TypeScript that stock is a valid key of HistoricalData
+  const data = historicalData[stock] as { Open: number; Month: string; }[];
+
+  if (!data) {
+    return <div>No data available for {stock}</div>;
+  }
+
   return (
     <div className="stock-graph-container">
       <div className="single-stock-graph-graph-wrapper">
-        <ResponsiveContainer width="100%" height={200}>
+        <ResponsiveContainer width="100%" height={400}>
           <LineChart data={data}>
             <CartesianGrid strokeDasharray="3 3" stroke="#444" />
-            <XAxis dataKey="name" tick={{ fill: '#888' }} />
+            <XAxis dataKey="Month" tick={{ fill: '#888' }} />
             <YAxis tick={{ fill: '#888' }} />
             <Tooltip contentStyle={{ backgroundColor: '#222', border: 'none' }} itemStyle={{ color: '#ddd' }} />
             <Legend verticalAlign="top" height={36} />
-            {stockMap[stock] && (
-              <Line
-                type="monotone"
-                dataKey={stockMap[stock]}
-                stroke="#007bff"
-                strokeWidth={2}
-                dot={false}
-                activeDot={{ r: 8 }}
-              />
-            )}
+            <Line
+              type="monotone"
+              dataKey="Open"
+              name={stockMap[stock]}
+              stroke="#007bff"
+              strokeWidth={2}
+              dot={false}
+              activeDot={{ r: 8 }}
+            />
           </LineChart>
         </ResponsiveContainer>
       </div>

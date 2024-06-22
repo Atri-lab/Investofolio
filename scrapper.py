@@ -1,114 +1,93 @@
-import requests
-from bs4 import BeautifulSoup
+import yfinance as yf
 import json
 
-class Stock:
-    def __init__(self, price, percent, change, up, prevclose, opene, bid, ask, ranges, range_year, avgvolume, volume, cap):
-        self.price = price
-        self.percent = percent
-        self.change = change
-        self.up = up
-        self.prevclose = prevclose
-        self.opene = opene
-        self.bid = bid
-        self.ask = ask
-        self.ranges = ranges
-        self.range_year = range_year
-        self.avgvolume = avgvolume
-        self.volume = volume
-        self.cap = cap
+# Define a list of ticker symbols
+ticker_symbols = ['NVDA', 'AAPL', 'TSLA', 'GS']
 
-def get_sector_performance(url):
-    response = requests.get(url)
-    soup = BeautifulSoup(response.content, 'html.parser')
-    tag = soup.find("div", class_="perf negative svelte-12wncuy") or soup.find("div", class_="perf positive svelte-12wncuy")
-    return tag if tag else None
+# Initialize an empty list to store stock data
+all_stock_data = []
 
-def get_stock_performance(url):
-    response = requests.get(url)
-    soup = BeautifulSoup(response.content, 'html.parser')
-    tag_price = soup.find("div", class_="container svelte-mgkamr")
-    tag_up = False
+# Iterate through each ticker symbol
+for ticker_symbol in ticker_symbols:
+    # Create a Ticker object
+    ticker = yf.Ticker(ticker_symbol)
 
-    if tag_price:
-        text = tag_price.text.strip()
-        price, change_percent = text.split(' ', 1)
-        change, percent = change_percent.split('(', 1)
-        percent = percent.strip(')%')
+    try:
+        # Get current price
+        current_price = round(ticker.history(period='1d')['Close'].iloc[-1], 2)
 
-        price = float(price.replace(',', ''))
-        change = float(change.replace(',', ''))
-        percent = float(percent)
-        tag_up = change > 0
+        # Get previous close price
+        previous_close = round(ticker.info['previousClose'], 2)
 
-        prevclose = soup.find("fin-streamer", {"data-field": "regularMarketPreviousClose"}).text
-        opene = soup.find("fin-streamer", {"data-field": "regularMarketOpen"}).text
-        bid = soup.find("span", string="Bid").find_next_sibling("span").text
-        ask = soup.find("span", string="Ask").find_next_sibling("span").text
-        ranges = soup.find("fin-streamer", {"data-field": "regularMarketDayRange"}).text
-        range_year = soup.find("fin-streamer", {"data-field": "fiftyTwoWeekRange"}).text
-        avgvolume = soup.find("fin-streamer", {"data-field": "averageVolume"}).text
-        volume = soup.find("fin-streamer", {"data-field": "regularMarketVolume"}).text
-        cap = soup.find("fin-streamer", {"data-field": "marketCap"}).text
+        # Calculate percent change
+        percent_change = round(((current_price - previous_close) / previous_close) * 100, 2) if previous_close else None
 
-        stock = Stock(price, percent, change, tag_up, prevclose, opene, bid, ask, ranges, range_year, avgvolume, volume, cap)
-        return stock
-    return None
+        # Get change in price
+        price_change = round(current_price - previous_close, 2) if previous_close else None
 
-sectors = {
-    "Tech": "https://finance.yahoo.com/sectors/technology/",
-    "Finance": "https://finance.yahoo.com/sectors/financial-services/",
-    "Healthcare": "https://finance.yahoo.com/sectors/healthcare/",
-    "Industrials": "https://finance.yahoo.com/sectors/industrials/",
-    "Energy": "https://finance.yahoo.com/sectors/energy/"
-}
+        # Determine if the stock is up or down
+        up_down = True if price_change > 0 else False if price_change < 0 else False
 
-data = []
-for sector, url in sectors.items():
-    performance = get_sector_performance(url)
-    if performance and performance.text:
-        change_str = performance.text.strip().strip('%')
+        # Get daily range
+        daily_low = round(ticker.history(period='1d')['Low'].min(), 2)
+        daily_high = round(ticker.history(period='1d')['High'].max(), 2)
+        daily_range_str = f"{daily_low} - {daily_high}"
+
+        # Get year range (using the same as daily for simplicity, adjust as needed)
+        year_range = daily_range_str
+
+        # Get volume
+        volume = ticker.info['volume']
+
+        # Calculate average volume (using 20-day average as an example)
+        avg_volume = round(ticker.history(period='1mo', interval='1d')['Volume'].mean(), 2)
+
+        # Fetch open price if available
         try:
-            change = float(change_str)
-            up = 'positive' in performance.get('class', [])
-            data.append({
-                "sector": sector,
-                "change": change,
-                "up": up
-            })
-        except ValueError:
-            print(f"Could not convert {change_str} to float for sector {sector}")
+            open_price = round(ticker.history(period='1d')['Open'].iloc[-1], 2)
+        except Exception as e:
+            open_price = None
 
-with open("./src/sector_performance.json", 'w') as f:
-    json.dump(data, f, indent=4)
+        # Fetch bid price if available
+        try:
+            bid_price = round(ticker.info['bid'], 2)
+        except Exception as e:
+            bid_price = None
 
-stocks = {
-    "NVDA": "https://finance.yahoo.com/quote/NVDA/",
-    "AAPL": "https://finance.yahoo.com/quote/AAPL/",
-    "TSLA": "https://finance.yahoo.com/quote/TSLA/",
-    "GS": "https://finance.yahoo.com/quote/GS/"
-}
+        # Fetch ask price if available
+        try:
+            ask_price = round(ticker.info['ask'], 2)
+        except Exception as e:
+            ask_price = None
 
-stock_data = []
-for symbol, url in stocks.items():
-    stock = get_stock_performance(url)
-    if stock:
-        stock_data.append({
-            "stock": symbol,
-            "price": stock.price,
-            "percent": stock.percent,
-            "change": stock.change,
-            "up": stock.up,
-            "PreviousClose": stock.prevclose,
-            "Open": stock.opene,
-            "Bid": stock.bid,
-            "Ask": stock.ask,
-            "Range": stock.ranges,
-            "YearRange": stock.range_year,
-            "AvgVolume": stock.avgvolume,
-            "Volume": stock.volume,
-            "MarketCap": stock.cap
-        })
+        # Get market cap
+        market_cap = ticker.info['marketCap'] if 'marketCap' in ticker.info else None
 
-with open("./src/stock_performance.json", 'w') as f:
-    json.dump(stock_data, f, indent=4)
+        # Create a dictionary with all the data rounded to 2 decimal places
+        stock_data = {
+            "stock": ticker_symbol,
+            "price": current_price,
+            "percent": percent_change,
+            "change": price_change,
+            "up": up_down,
+            "PreviousClose": previous_close,
+            "Open": open_price,
+            "Bid": bid_price,
+            "Ask": ask_price,
+            "Range": daily_range_str,
+            "YearRange": year_range,
+            "AvgVolume": avg_volume,
+            "Volume": volume,
+            "MarketCap": market_cap
+        }
+
+        # Append stock data to the list
+        all_stock_data.append(stock_data)
+
+    except Exception as e:
+        print(f"Failed to retrieve data for {ticker_symbol}: {str(e)}")
+
+# Write all_stock_data to a JSON file
+output_file = './src/stock_performance.json'
+with open(output_file, 'w') as f:
+    json.dump(all_stock_data, f, indent=4)

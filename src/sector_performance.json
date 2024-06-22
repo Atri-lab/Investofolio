@@ -1,27 +1,27 @@
 [
     {
         "sector": "Tech",
-        "change": 0.05,
+        "change": 0.09,
         "up": false
     },
     {
         "sector": "Finance",
-        "change": 0.04,
+        "change": 0.06,
         "up": false
     },
     {
         "sector": "Healthcare",
-        "change": 0.08,
+        "change": 0.16,
         "up": false
     },
     {
         "sector": "Industrials",
-        "change": 0.06,
+        "change": 0.11,
         "up": false
     },
     {
         "sector": "Energy",
-        "change": 0.06,
+        "change": 0.09,
         "up": false
     }
 ]

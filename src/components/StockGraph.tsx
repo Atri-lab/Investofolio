@@ -1,80 +1,50 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 import { FaInfoCircle } from 'react-icons/fa';
 import '../styles/StockGraph.css';
+import historicalData from '../historical_data.json'; // Adjust path as needed
 
-const data = [
-  {
-    name: 'Feb',
-    NVIDIA: 66.06,
-    Apple: 183.09,
-    Tesla: 255.19,
-    GoldmanSachs: 368.14,
-  },
-  {
-    name: 'Mar',
-    NVIDIA: 79.99,
-    Apple: 179.66,
-    Tesla: 200.52,
-    GoldmanSachs: 392.19,
-  },
-  {
-    name: 'Apr',
-    NVIDIA: 90.37,
-    Apple: 169.30,
-    Tesla: 177.45,
-    GoldmanSachs: 410.30,
-  },
-  {
-    name: 'May',
-    NVIDIA: 86.40,
-    Apple: 186.35,
-    Tesla: 179.31,
-    GoldmanSachs: 439.40,
-  },
-  {
-    name: 'Jun',
-    NVIDIA: 131.88,
-    Apple: 212.49,
-    Tesla: 178.01,
-    GoldmanSachs: 446.46,
-  },
-];
+// Define type for historical data
+interface HistoricalData {
+  NVDA: { Open: number; Month: string; }[];
+  AAPL: { Open: number; Month: string; }[];
+  TSLA: { Open: number; Month: string; }[];
+  GS: { Open: number; Month: string; }[];
+}
+
+const stockMap: { [key: string]: string } = {
+  NVDA: "NVIDIA",
+  AAPL: "Apple",
+  TSLA: "Tesla",
+  GS: "GoldmanSachs"
+};
+
+// Combine all stocks data
+const data = Object.keys(stockMap).reduce((acc, key) => {
+  const stockKey = key as keyof HistoricalData;
+  historicalData[stockKey].forEach((entry, index) => {
+    if (!acc[index]) acc[index] = { Month: entry.Month };
+    acc[index][stockMap[stockKey]] = entry.Open;
+  });
+  return acc;
+}, [] as any[]);
 
 const StockGraph: React.FC = () => {
-  const [selectedStock, setSelectedStock] = useState<string | null>(null);
-
-  const handleStockSelect = (stock: string | null) => {
-    setSelectedStock(stock);
-  };
-
   return (
     <div className="stock-graph-wrapper">
       <div className="stock-graph-container">
-        <div className="stock-selection">
-          <button className={!selectedStock ? 'selected' : ''} onClick={() => handleStockSelect(null)}>All</button>
-          <button className={selectedStock === 'NVIDIA' ? 'selected' : ''} onClick={() => handleStockSelect('NVIDIA')}>NVIDIA</button>
-          <button className={selectedStock === 'Apple' ? 'selected' : ''} onClick={() => handleStockSelect('Apple')}>Apple</button>
-          <button className={selectedStock === 'Tesla' ? 'selected' : ''} onClick={() => handleStockSelect('Tesla')}>Tesla</button>
-          <button className={selectedStock === 'GoldmanSachs' ? 'selected' : ''} onClick={() => handleStockSelect('GoldmanSachs')}>Goldman Sachs</button>
-        </div>
         <ResponsiveContainer width="100%" height={320}>
           <LineChart data={data}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
+            <XAxis dataKey="Month" />
             <YAxis />
             <Tooltip />
             <Legend />
-            {!selectedStock || selectedStock === 'NVIDIA' ? <Line type="monotone" dataKey="NVIDIA" stroke="#8884d8" /> : null}
-            {!selectedStock || selectedStock === 'Apple' ? <Line type="monotone" dataKey="Apple" stroke="#82ca9d" /> : null}
-            {!selectedStock || selectedStock === 'Tesla' ? <Line type="monotone" dataKey="Tesla" stroke="#ffc658" /> : null}
-            {!selectedStock || selectedStock === 'GoldmanSachs' ? <Line type="monotone" dataKey="GoldmanSachs" stroke="#ff7300" /> : null}
-            <Line type="monotone" dataKey="movingAvg" stroke="#0000FF" dot={false} />
-            <Line type="monotone" dataKey="volume" stroke="#413ea0" />
-            <Line type="monotone" dataKey="risk" stroke="#FF0000" />
-            <Line type="monotone" dataKey="sharpeRatio" stroke="#FF1493" dot={false} />
-            <Line type="monotone" dataKey="beta" stroke="#7B68EE" dot={false} />
+            <Line type="monotone" dataKey="NVIDIA" stroke="#8884d8" />
+            <Line type="monotone" dataKey="Apple" stroke="#82ca9d" />
+            <Line type="monotone" dataKey="Tesla" stroke="#ffc658" />
+            <Line type="monotone" dataKey="GoldmanSachs" stroke="#ff7300" />
           </LineChart>
         </ResponsiveContainer>
       </div>

@@ -36,7 +36,7 @@ const metricExplanations = {
 const stockDetails: { [key: string]: StockDetails } = {
   AAPL: {
     icon: <FaApple size={36} color="#A3AAAE" />,
-    description: "Apple Inc. designs, manufactures, and markets smartphones, personal computers, tablets, wearables, and accessories worldwide. It also sells various related services. The company offers iPhone, a line of smartphones; Mac, a line of personal computers; iPad, a line of multi-purpose tablets; and wearables, home, and accessories comprising AirPods, Apple TV, Apple Watch, Beats products, HomePod, iPod touch, and other Apple-branded and third-party accessories."
+    description: "Apple Inc. designs, manufactures, and markets smartphones, personal computers, tablets, wearables, and accessories worldwide. It also sells various related services. The company offers iPhone, Mac, iPad, wearables, accessories and other Apple-branded and third-party accessories."
   },
   NVDA: {
     icon: <FaMicrochip size={36} color="#76B900" />,

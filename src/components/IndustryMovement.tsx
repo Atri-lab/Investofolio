@@ -35,7 +35,7 @@ const IndustryMovement: React.FC = () => {
                   <span className="ticker-name">{stock.stock}</span>
                   <span className={`ticker-change ${stock.up ? 'up' : 'down'}`}>
                     {stock.up ? <FaArrowUp /> : <FaArrowDown />}
-                    {stock.price} ({stock.up ? '+' : '-'}{stock.percent}%)
+                    {stock.price} ({stock.up ? '+' : ''}{stock.percent}%) 
                   </span>
                 </div>
               ))}

@@ -87,6 +87,8 @@
   display: flex;
   align-items: center;
   padding: 0 10px;
+  white-space: nowrap; /* Prevent text from wrapping */
+  min-width: 100px; /* Ensure each ticker item has the same minimum width */
 }
 
 .ticker-name {

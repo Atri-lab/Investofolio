@@ -1,7 +1,7 @@
 .stock-detail-container {
   padding: 20px;
   font-family: Arial, sans-serif;
-  background: linear-gradient(145deg, #ffffff, #e6e6e6);
+  background: linear-gradient(145deg, #ffffff, #e6e6e6); /*linear-gradient(145deg, #ffffff, #e6e6e6)*/
   border-radius: 20px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
   margin: 20px;

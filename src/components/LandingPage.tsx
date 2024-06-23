@@ -16,7 +16,8 @@ const LandingPage: React.FC = () => {
       </div>
       <div className="text-container">
         <h1 className="landing-motto">Graduate and Excel in Investments with Us!</h1>
-        <p className="landing-subtitle">Scroll down to view the dashboard.</p>
+        <p className="landing-subtitle">Scroll down to view the dashboard</p>
+        <p className="landing-subtitle">(Click on individual stocks for more information)</p>
         <div className="down-arrow">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 21L12 3" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>

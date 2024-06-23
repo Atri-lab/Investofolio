@@ -77,10 +77,10 @@ const Dashboard: React.FC = () => {
             <p>As of {formatTime(currentTime)}. {marketStatus}.</p>
           </div>
         ))}
-        <div className="stock-card coming-soon">
+        <a href="https://atri-lab.github.io/coming-soon-at-investofolio/" className="stock-card coming-soon">
           <FaPlusCircle size={40} color="#333" />
           <h3>Coming Soon</h3>
-        </div>
+        </a>
       </div>
       <div className="graph-section">
         <StockGraph />

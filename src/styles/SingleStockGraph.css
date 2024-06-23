@@ -1,6 +1,6 @@
 .stock-graph-container {
-  width: 100%; /* Adjust width as needed */
-  max-width: 600px; /* Set a maximum width if necessary */
+  width: calc(100% + 5px); /* Adjust width as needed */
+  max-width: 625px; /* Set a maximum width if necessary */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,7 +19,6 @@
 
 .single-stock-graph-graph-wrapper {
   width: 100%; /* Ensures the graph takes up the entire width of its parent */
-  height: 380px; /* Adjust height as needed */
+  height: 190px; /* Ensures the graph takes up the entire height of its parent */
+  padding: 25px; /* Adjust padding as needed to center the graph */
 }
-
-

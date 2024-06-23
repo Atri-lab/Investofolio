@@ -5,27 +5,19 @@ import { Tooltip } from 'react-tooltip';
 import Chatbot from './Chatbot';
 import stockData from '../stock_performance.json';
 import '../styles/StockDetail.css';
-
-export interface Stock {
-  stock: string;
-  price: number;
-  change: number;
-  percent: number;
-  up: boolean;
-  volume: string;
-  beta: string;
-  peratio: string;
-  revenue: string;
-  ebidta: string;
-  marketcap: string;
-}
+import { Stock, HistoricalData} from '../types/Stock';
 
 interface StockDetailProps {
   stock: Stock;
   onBack: () => void;
+} 
+
+interface StockDetails {
+  icon: JSX.Element;
+  description: string;
 }
 
-const metricExplanations: { [key: string]: string } = {
+const metricExplanations = {
   PreviousClose: "The last price at which the stock traded during the previous trading session.",
   Open: "The price at which the stock opened for trading during the current trading session.",
   Bid: "The highest price a buyer is willing to pay for the stock.",
@@ -41,7 +33,7 @@ const metricExplanations: { [key: string]: string } = {
   EBITDA: "Earnings Before Interest, Taxes, Depreciation, and Amortization - a measure of a company's overall financial performance."
 };
 
-const stockDetails = {
+const stockDetails: { [key: string]: StockDetails } = {
   AAPL: {
     icon: <FaApple size={36} color="#A3AAAE" />,
     description: "Apple Inc. designs, manufactures, and markets smartphones, personal computers, tablets, wearables, and accessories worldwide. It also sells various related services. The company offers iPhone, a line of smartphones; Mac, a line of personal computers; iPad, a line of multi-purpose tablets; and wearables, home, and accessories comprising AirPods, Apple TV, Apple Watch, Beats products, HomePod, iPod touch, and other Apple-branded and third-party accessories."
@@ -61,7 +53,7 @@ const stockDetails = {
 };
 
 const StockDetail: React.FC<StockDetailProps> = ({ stock, onBack }) => {
-  const { icon, description } = stockDetails[stock.stock] || { icon: null, description: "Description not available." };
+  const stockDetail: StockDetails = stockDetails[stock.stock] || { icon: <FaInfoCircle size={36} />, description: "Description not available." };
 
   return (
     <div className="stock-detail-container">
@@ -70,7 +62,7 @@ const StockDetail: React.FC<StockDetailProps> = ({ stock, onBack }) => {
       </button>
       <div className="stock-detail-header">
         <div className="header-left">
-          {icon}
+          {stockDetail.icon}
           <h1>{stock.stock}</h1>
         </div>
         <div className="header-divider"></div>
@@ -90,7 +82,7 @@ const StockDetail: React.FC<StockDetailProps> = ({ stock, onBack }) => {
                 <div className="metric-icon">
                   <FaInfoCircle data-tooltip-id={`tooltip-${key}`} className="info-icon" />
                   <Tooltip id={`tooltip-${key}`} place="right">
-                    {metricExplanations[key]}
+                    {metricExplanations[key as keyof typeof metricExplanations] }
                   </Tooltip>
                 </div>
                 <div className="metric-details">
@@ -103,11 +95,11 @@ const StockDetail: React.FC<StockDetailProps> = ({ stock, onBack }) => {
         </div>
         <div className="stock-detail-graph-about">
           <div className="stock-detail-graph">
-            <SingleStockGraph stock={stock.stock} />
+            <SingleStockGraph stock= {stock.stock as keyof HistoricalData}/>
           </div>
           <div className="about-section">
             <h3>About {stock.stock}</h3>
-            <p>{description}</p>
+            <p>{stockDetail.description}</p>
           </div>
         </div>
         <div className="chatbot-section">

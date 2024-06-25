@@ -20,15 +20,43 @@ const IndustryCalendar: React.FC = () => {
     }
   };
 
-  const tileContent = ({ date, view }: { date: Date; view: string }) => {
-    if (view === 'month') {
+  const tileContent = ({ date: tileDate, view }: { date: Date; view: string }) => {
+    if (view === 'month' && date) {
       const events = [
-        { date: 2, event: 'Apple Q3 Start' },
-        { date: 15, event: 'NVIDIA Investor Meeting' },
-        { date: 20, event: 'Tesla Earnings Call' },
+        // June 2024
+        { date: 2, month: 5, year: 2024, event: 'Apple Q3 Start' },
+        { date: 15, month: 5, year: 2024, event: 'NVIDIA Investor Meeting' },
+        { date: 20, month: 5, year: 2024, event: 'Tesla Earnings Call' },
+        { date: 25, month: 5, year: 2024, event: 'Goldman Sachs Earnings Call' },
+
+        // July 2024
+        { date: 5, month: 6, year: 2024, event: 'Apple Q3 Mid' },
+        { date: 10, month: 6, year: 2024, event: 'NVIDIA Q2 Start' },
+        { date: 18, month: 6, year: 2024, event: 'Tesla Investor Meeting' },
+        { date: 22, month: 6, year: 2024, event: 'Goldman Sachs Q3 Start' },
+
+        // August 2024
+        { date: 7, month: 7, year: 2024, event: 'Apple Q3 End' },
+        { date: 12, month: 7, year: 2024, event: 'NVIDIA Earnings Call' },
+        { date: 15, month: 7, year: 2024, event: 'Tesla Q3 Start' },
+        { date: 25, month: 7, year: 2024, event: 'Goldman Sachs Investor Meeting' },
+
+        // September 2024
+        { date: 3, month: 8, year: 2024, event: 'Apple Q4 Start' },
+        { date: 8, month: 8, year: 2024, event: 'NVIDIA Investor Meeting' },
+        { date: 20, month: 8, year: 2024, event: 'Tesla Earnings Call' },
+        { date: 28, month: 8, year: 2024, event: 'Goldman Sachs Earnings Call' },
       ];
 
-      const event = events.find((e) => e.date === date.getDate());
+      const currentMonth = date.getMonth();
+      const currentYear = date.getFullYear();
+
+      const event = events.find(
+        (e) =>
+          e.date === tileDate.getDate() &&
+          e.month === currentMonth &&
+          e.year === currentYear
+      );
       if (event) {
         return (
           <div className="event-marker" title={event.event}>
@@ -54,7 +82,7 @@ const IndustryCalendar: React.FC = () => {
         </button>
       </div>
       <Calendar
-        onChange={() => {}}  // No-op to disable date selection
+        onChange={() => {}} // No-op to disable date selection
         value={date}
         tileContent={tileContent}
         nextLabel={null}

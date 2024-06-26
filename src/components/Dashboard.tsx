@@ -53,9 +53,7 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className="dashboard-container">
-      <h1 className="dashboard-header"></h1>
       <div className="portfolio-section">
-        <h2 className="section-header"></h2>
         {stockData.map((stock, index) => (
           <div key={index} className="stock-card" onClick={() => handleStockClick(stock)}>
             <div className="stock-card-header">
@@ -87,7 +85,6 @@ const Dashboard: React.FC = () => {
       </div>
       <div className="calendar-section">
         <div className="calendar-widget">
-          <h2 className="section-header"></h2>
           <IndustryCalendar />
         </div>
         <div className="industry-movement-widget">

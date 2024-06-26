@@ -3,7 +3,6 @@ import { FaArrowUp, FaArrowDown, FaApple, FaBuilding, FaMicrochip, FaCar, FaArro
 import SingleStockGraph from './SingleStockGraph';
 import { Tooltip } from 'react-tooltip';
 import Chatbot from './Chatbot';
-import stockData from '../stock_performance.json';
 import '../styles/StockDetail.css';
 import { Stock, HistoricalData} from '../types/Stock';
 
@@ -75,7 +74,6 @@ const StockDetail: React.FC<StockDetailProps> = ({ stock, onBack }) => {
       </div>
       <div className="stock-detail-content">
         <div className="stock-detail-info">
-          <h3>Stock Details</h3>
           {Object.entries(stock).map(([key, value], index) => (
             key !== 'stock' && key !== 'price' && key !== 'change' && key !== 'percent' && key !== 'up' && (
               <div key={index} className="stock-detail-info-item">

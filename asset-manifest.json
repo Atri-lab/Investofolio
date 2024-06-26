@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/Investofolio/static/css/main.36c896c1.css",
+    "main.js": "/Investofolio/static/js/main.43f53446.js",
+    "static/js/453.8cd3455c.chunk.js": "/Investofolio/static/js/453.8cd3455c.chunk.js",
+    "static/media/Logo.png": "/Investofolio/static/media/Logo.8028d0519df0168dfd4e.png",
+    "static/media/Cap.png": "/Investofolio/static/media/Cap.6bf3a68633a8cb5acc1b.png",
+    "index.html": "/Investofolio/index.html",
+    "main.36c896c1.css.map": "/Investofolio/static/css/main.36c896c1.css.map",
+    "main.43f53446.js.map": "/Investofolio/static/js/main.43f53446.js.map",
+    "453.8cd3455c.chunk.js.map": "/Investofolio/static/js/453.8cd3455c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.36c896c1.css",
+    "static/js/main.43f53446.js"
+  ]
+}

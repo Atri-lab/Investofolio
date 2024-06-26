@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import '../styles/Chatbot.css';
 
-const API_KEY = ''; // insert your API key here
+const API_KEY = process.env.REACT_APP_GEMINI_API_KEY || ''; // insert your API key here
 
 const genAI = new GoogleGenerativeAI(API_KEY);
 

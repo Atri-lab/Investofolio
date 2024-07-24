@@ -97,3 +97,31 @@
 .info-icon:hover {
   transform: scale(1.2);
 }
+/* Tablets and larger devices */
+@media (min-width: 768px) {
+  .stock-graph-container {
+    padding: 25px;
+  }
+}
+
+/* Laptops and larger devices */
+@media (min-width: 992px) {
+  .stock-graph-container {
+    padding: 30px;
+  }
+}
+
+/* Large monitors */
+@media (min-width: 1200px) {
+  .stock-graph-container {
+    padding: 35px;
+  }
+}
+
+/* Small screens */
+@media (max-width: 767px) {
+  .stock-graph-container {
+    padding: 15px;
+  }
+}
+

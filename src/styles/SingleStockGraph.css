@@ -1,6 +1,6 @@
 .stock-graph-container {
-  width: calc(100% + 5px); /* Adjust width as needed */
-  max-width: 625px; /* Set a maximum width if necessary */
+  width: 100%;
+  max-width: 625px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,6 +10,7 @@
   border-radius: 16px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
   transition: transform 0.2s, box-shadow 0.2s;
+  box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
 }
 
 .stock-graph-container:hover {
@@ -22,3 +23,32 @@
   height: 190px; /* Ensures the graph takes up the entire height of its parent */
   padding: 25px; /* Adjust padding as needed to center the graph */
 }
+
+/* Tablets and larger devices */
+@media (min-width: 768px) {
+  .stock-graph-container {
+    padding: 25px;
+  }
+}
+
+/* Laptops and larger devices */
+@media (min-width: 992px) {
+  .stock-graph-container {
+    padding: 30px;
+  }
+}
+
+/* Large monitors */
+@media (min-width: 1200px) {
+  .stock-graph-container {
+    padding: 35px;
+  }
+}
+
+/* Small screens */
+@media (max-width: 767px) {
+  .stock-graph-container {
+    padding: 15px;
+  }
+}
+

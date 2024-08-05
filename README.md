@@ -1,46 +1,69 @@
-# Getting Started with Create React App
+## Investofolio 📈
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Investofolio is designed to promote financial literacy and provide real-time portfolio analysis. This website was developed using TypeScript, React.js, Gemini API and Kubernetes to provide a comfortable and efficient user experience.
 
-## Available Scripts
+### Features
+- Dynamic Financial Metric Tracking: Allows the user to get a full picture of the stocks they are tracking through real time data analysis generating 14 accurate performance indicators for the individual and portfolio.
+- Interactive Graphs: Interactive graphs allow the user to see the past performance of a stock over several months, the graphs are interactable allowing the user to choose which stocks to compare to one another. 
+- Chatbot for Personalized Financial Learning: The single stock dashboard also includes a personalized chatbot connected to the Gemini API allowing the user to ask specific questions they might have about a stock’s diagnostics, it's the main tool we have to educate the user about the stock they are tracking.
+- Calendar: The user has a calendar in the main dashboard which displays the major shareholder meetings, board meetings or other events their tracked companies have lined up in the near future
+- Sector Performance: On the main section of the dashboard the user has a interface which shows all major sectors of the stock market and their daily performance so the user has a better understanding of where the economy is moving
 
-In the project directory, you can run:
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-### `npm start`
+### Built With
+- React
+- TypeScript
+- React.js
+- Gemini API
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Getting Started
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-### `npm test`
+```
+npm run dev
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-### `npm run build`
+### Prerequisites
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Ensure npm is up to date
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+npm install npm@latest -g
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Installing
 
-### `npm run eject`
+1. Clone the Repo
+```
+git clone https://github.com/ShashStudios/CodeUp.git
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. Install NPM packages
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```
+npm install
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+npm install axios
+```
 
-## Learn More
+## Contributing
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+We are not currently looking for contributors
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Authors
+
+* **🔥Atri Vyas** - *Initial work* - [Atri-lab](https://github.com/Atri-lab)
+
+* **🔥Thomas Mbrice** - *Initial work* - [Thomas](https://github.com/ThomasMbrice)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
